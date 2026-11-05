@@ -46,3 +46,32 @@ def test_negative_discount():
 def test_discount_above_100():
     with pytest.raises(ValueError):
         calculate_discount(100, 110)
+
+@pytest.mark.parametrize(
+    "price, discount, expected",
+    [
+        (200, 5, 190),
+        (500, 15, 425),
+        (1000, 50, 500),
+        (75, 20, 60),
+        (120, 100, 0),
+        (100, 0, 100),
+        (0, 50, 0),
+    ],
+)
+def test_multiple_discount_scenarios(price, discount, expected):
+    assert calculate_discount(price, discount) == pytest.approx(expected)
+
+def test_discount_above_100_boundary():
+    with pytest.raises(ValueError):
+        calculate_discount(100, 101)
+
+
+def test_negative_discount_boundary():
+    with pytest.raises(ValueError):
+        calculate_discount(100, -1)
+
+
+def test_negative_price_boundary():
+    with pytest.raises(ValueError):
+        calculate_discount(-1, 10)
