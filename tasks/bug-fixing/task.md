@@ -6,9 +6,7 @@
 
 
 
-The discount calculator returns incorrect final prices because
-
-the discount percentage is not converted into a decimal value.
+The discount calculator returns incorrect final prices because the discount percentage is not converted into a decimal value.
 
 
 
@@ -16,9 +14,7 @@ the discount percentage is not converted into a decimal value.
 
 
 
-Fix the calculate\_discount() function so that it correctly
-
-calculates the final price after applying a discount.
+Fix the `calculate\_discount()` function so that it correctly calculates the final price after applying a discount.
 
 
 
@@ -26,7 +22,7 @@ calculates the final price after applying a discount.
 
 
 
-The formula is:
+Formula:
 
 
 
@@ -52,7 +48,11 @@ final\_price = price - discount\_amount
 
 5\. Support decimal prices.
 
-6\. Return the final price.
+6\. Reject negative prices.
+
+7\. Reject discount percentages outside 0 to 100.
+
+8\. Return the final price.
 
 
 
@@ -62,15 +62,15 @@ final\_price = price - discount\_amount
 
 Input:
 
-price = 100
-
-discount\_percent = 10
 
 
+\- price = 100
 
-Expected output:
+\- discount\_percent = 10
 
-90
+
+
+Expected output: `90`
 
 
 
@@ -88,6 +88,8 @@ Expected output:
 
 \- Decimal prices are calculated correctly.
 
+\- Invalid inputs raise `ValueError`.
+
 
 
 \## Testing
@@ -97,6 +99,8 @@ Expected output:
 Run the automated tests using:
 
 
+
+```bash
 
 python -m pytest -v
 
